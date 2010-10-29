@@ -32,4 +32,18 @@ public class GuessNumberTest {
         String result = guessNumber.validate("1246");
         assertEquals("2a1b", result);
     }
+
+    @Test
+    public void should_return_2a2b_given_two_place_corrects_and_two_place_incorrects(){
+        GuessNumber guessNumber = new GuessNumber("1234");
+        String result = guessNumber.validate("1243");
+        assertEquals("2a2b", result);
+    }
+
+    @Test
+    public void should_return_0a0b_given_no_corrects(){
+        GuessNumber guessNumber = new GuessNumber("1234");
+        String result = guessNumber.validate("5678");
+        assertEquals("0a0b", result);
+    }
 }
