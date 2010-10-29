@@ -2,23 +2,34 @@ package guessNumber;
 
 public class GuessNumber {
 
-    private String randomNumber;
     private final int[] randomNumbers;
 
     public GuessNumber(String randomNumber) {
         randomNumbers = parseString(randomNumber);
-        this.randomNumber = randomNumber;
     }
 
     public String validate(String userInput) {
         int[] inputs = parseString(userInput);
-        int correct = 0;
+        int placeCorrect = 0;
+        int placeIncorrect = 0;
         for(int i = 0; i < 4; i++){
             if (inputs[i] == randomNumbers[i]) {
-                correct++;
+                placeCorrect++;
+            } else if (containsInput(randomNumbers, inputs[i])) {
+                placeIncorrect++;
             }
         }
-        return correct + "a0b";
+
+        return placeCorrect + "a" + placeIncorrect + "b";
+    }
+
+    private boolean containsInput(int[] randomNumbers, int input) {
+        for (int randomNumber : randomNumbers) {
+            if (randomNumber == input) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private int[] parseString(String userInput) {

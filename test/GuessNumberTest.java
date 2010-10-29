@@ -25,4 +25,11 @@ public class GuessNumberTest {
         String result = guessNumber.validate("1256");
         assertEquals("2a0b", result);
     }
+
+    @Test
+    public void should_return_2a1b_given_two_numbers_are_place_correct_and_one_number_place_is_not_correct(){
+        GuessNumber guessNumber = new GuessNumber("1234");
+        String result = guessNumber.validate("1246");
+        assertEquals("2a1b", result);
+    }
 }
